@@ -126,7 +126,7 @@ header.scrolled .nav-links a:hover { color: var(--black); }
 .hero-bg {
     position: absolute;
     inset: 0;
-    background-image: url('Images/farmland.png');
+    background-image: url('Images/farmland.webp');
     background-size: cover;
     background-position: center 30%;
     transform: scale(1.03);
@@ -477,7 +477,7 @@ header.scrolled .nav-links a:hover { color: var(--black); }
 
 /* Image background card */
 .card-img-bg {
-    background-image: url('Images/plant-disease.jpg');
+    background-image: url('Images/plant-disease.webp');
     background-size: cover;
     background-position: center;
     border-color: transparent;
@@ -518,21 +518,21 @@ header.scrolled .nav-links a:hover { color: var(--black); }
 }
 
 .card-soil-bg {
-    background-image: url('Images/soil-fertilizer.jpg');
+    background-image: url('Images/soil-fertilizer.webp');
 }
 
 .card-weather-bg {
-    background-image: url('Images/weather-season.jpg');
+    background-image: url('Images/weather-season.webp');
     background-position: center top;
 }
 
 .card-farming-bg {
-    background-image: url('Images/farming-technique.jpg');
+    background-image: url('Images/farming-technique.webp');
     background-position: center center;
 }
 
 .card-law-bg {
-    background-image: url('Images/law-policy.jpg');
+    background-image: url('Images/law-policy.webp');
     background-position: center center;
 }
 
