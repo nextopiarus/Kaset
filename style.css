@@ -1040,7 +1040,7 @@ footer {
     .chat-widget { bottom: 18px; right: 16px; }
     .chat-box {
         position: fixed !important;
-        top: 2% !important;
+        top: 4% !important;
         left: 4% !important;
         right: 4% !important;
         bottom: 1% !important;
