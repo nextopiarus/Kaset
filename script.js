@@ -60,6 +60,62 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // ── Mic / Speech Recognition ───────────────────────────────
+    const chatMic = document.getElementById('chatMic');
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (SpeechRecognition) {
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'th-TH';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        let isListening = false;
+
+        chatMic.addEventListener('click', () => {
+            if (isListening) {
+                recognition.stop();
+            } else {
+                recognition.start();
+            }
+        });
+
+        recognition.addEventListener('start', () => {
+            isListening = true;
+            chatMic.classList.add('listening');
+            chatMic.title = 'กำลังฟัง... กดเพื่อหยุด';
+            chatInput.placeholder = '🎙️ กำลังฟัง...';
+        });
+
+        recognition.addEventListener('result', (e) => {
+            const transcript = e.results[0][0].transcript;
+            chatInput.value = transcript;
+        });
+
+        recognition.addEventListener('end', () => {
+            isListening = false;
+            chatMic.classList.remove('listening');
+            chatMic.title = 'กดแล้วพูด';
+            chatInput.placeholder = 'พิมพ์คำถามของคุณ...';
+
+            // ส่งอัตโนมัติถ้ามีข้อความ
+            const text = chatInput.value.trim();
+            if (text) { sendMessage(text); chatInput.value = ''; }
+        });
+
+        recognition.addEventListener('error', (e) => {
+            isListening = false;
+            chatMic.classList.remove('listening');
+            chatInput.placeholder = 'พิมพ์คำถามของคุณ...';
+            if (e.error === 'not-allowed') {
+                appendMsg('bot', '⚠️ กรุณาอนุญาตให้ใช้ไมโครโฟนในเบราว์เซอร์ก่อนนะครับ');
+            }
+        });
+    } else {
+        // browser ไม่รองรับ — ซ่อนปุ่มไมค์
+        chatMic.style.display = 'none';
+    }
+
     // ── Send message ───────────────────────────────────────────────
     chatSend.addEventListener('click', () => {
         const text = chatInput.value.trim();
