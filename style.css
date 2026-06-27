@@ -861,7 +861,7 @@ header.scrolled .nav-links a:hover { color: var(--black); }
 
 .chat-box-input input:focus { border-color: var(--green-mid); }
 
-.chat-box-input button {
+.chat-box-input button#chatSend {
     background: var(--green-mid);
     color: #fff;
     border: none;
@@ -874,7 +874,7 @@ header.scrolled .nav-links a:hover { color: var(--black); }
     transition: background 0.2s;
 }
 
-.chat-box-input button:hover { background: var(--green-deep); }
+.chat-box-input button#chatSend:hover { background: var(--green-deep); }
 
 /* Chat Toggle Button */
 .chat-toggle-btn {
@@ -1039,27 +1039,26 @@ footer {
 
     .chat-widget { bottom: 18px; right: 16px; }
     .chat-box {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        max-width: 100%;
-        height: 100%;
-        border-radius: 0;
-        z-index: 1100;
-        padding-top: env(safe-area-inset-top);
-        padding-bottom: env(safe-area-inset-bottom);
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100% !important;
+        max-height: 100% !important;
+        border-radius: 0 !important;
+        z-index: 1100 !important;
+        transform: none !important;
     }
     .chat-box-header {
-        padding: 16px 16px;
-        padding-top: calc(16px + env(safe-area-inset-top));
+        padding-top: calc(14px + env(safe-area-inset-top, 0px));
     }
     .chat-box-messages {
-        flex: 1;
-        height: auto;
-        font-size: 16px;
+        flex: 1 !important;
+        height: auto !important;
+        min-height: 0;
     }
     .chat-msg { font-size: 16px; padding: 12px 16px; max-width: 88%; }
     .chat-box-name { font-size: 17px; }
@@ -1069,20 +1068,24 @@ footer {
     .quick-chip { font-size: 14px; padding: 8px 16px; }
     .chat-box-input {
         padding: 12px 16px;
-        padding-bottom: calc(12px + env(safe-area-inset-bottom));
+        padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
         gap: 10px;
+        flex-shrink: 0;
     }
     .chat-box-input input {
         font-size: 16px;
-        padding: 12px 14px;
+        padding: 0 14px;
         height: 48px;
     }
     #chatMic {
-        width: 48px;
-        height: 48px;
-        padding: 0;
-        flex-shrink: 0;
-        border-radius: var(--radius-sm);
+        width: 48px !important;
+        height: 48px !important;
+        min-width: 48px;
+        padding: 0 !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        background: var(--off-white) !important;
+        color: var(--text-muted) !important;
     }
     #chatMic svg { width: 22px; height: 22px; }
     .chat-box-input button#chatSend {
@@ -1090,6 +1093,7 @@ footer {
         padding: 0 20px;
         font-size: 16px;
         white-space: nowrap;
+        flex-shrink: 0;
     }
     .footer-inner { flex-direction: column; gap: 6px; text-align: center; }
 }
